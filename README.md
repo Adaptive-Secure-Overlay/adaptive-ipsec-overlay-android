@@ -1,5 +1,10 @@
 # Adaptive Secure Overlay IPsec Android
 
+![Adaptive Secure Overlay](assets/banner.svg)
+
+[![English](https://img.shields.io/badge/language-English-0f172a?style=flat-square)](README.md)
+[![Русская версия](https://img.shields.io/badge/language-Русская%20версия-0369a1?style=flat-square)](README.ru.md)
+
 Android client prototype for the Adaptive Secure Overlay IPsec research track.
 
 Canonical repository name: `adaptive-ipsec-overlay-android`
@@ -14,6 +19,8 @@ This is a real Android prototype branch, not a finished mobile client.
 - Android UI/state-model base is working
 - route selection and session-flow visualization are already present
 - live transport, live crypto and live VPN/IPsec integration are not wired yet
+
+See also: [STATUS.md](STATUS.md)
 
 ## Current scope
 

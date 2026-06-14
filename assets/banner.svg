@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="480" viewBox="0 0 1440 480" role="img" aria-label="Adaptive Secure Overlay Android banner">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#08111d"/>
+      <stop offset="0.55" stop-color="#0c1829"/>
+      <stop offset="1" stop-color="#132033"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#61c3ff"/>
+      <stop offset="1" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5eead4"/>
+      <stop offset="1" stop-color="#10b981"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1440" height="480" fill="url(#bg)"/>
+
+  <g opacity="0.16">
+    <path d="M0 370C155 332 275 316 401 335C517 352 625 397 741 394C863 391 968 331 1088 325C1195 320 1292 342 1440 314V480H0Z" fill="#10263f"/>
+    <path d="M0 408C154 394 283 389 409 400C530 411 645 449 770 451C900 453 1018 409 1146 397C1244 389 1325 396 1440 382V480H0Z" fill="#153251"/>
+  </g>
+
+  <g transform="translate(88 74)">
+    <rect width="108" height="108" rx="26" fill="#0f2338" stroke="#2f80ed" stroke-width="2.5"/>
+    <path d="M54 22L85 40V76L54 94L23 76V40Z" fill="none" stroke="#e8f2ff" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M39 57H69M54 40V76" stroke="url(#blue)" stroke-width="5" stroke-linecap="round"/>
+  </g>
+
+  <text x="228" y="126" font-family="Segoe UI, Arial, sans-serif" font-size="60" font-weight="800" fill="#f8fbff">
+    Adaptive Secure Overlay
+  </text>
+  <text x="229" y="172" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#8fd3ff">
+    Android IPsec Client Track
+  </text>
+  <text x="229" y="226" font-family="Segoe UI, Arial, sans-serif" font-size="23" fill="#d8e5f2">
+    Mobile prototype for the same routed control-plane model used in the main lab branch.
+  </text>
+  <text x="229" y="260" font-family="Segoe UI, Arial, sans-serif" font-size="23" fill="#d8e5f2">
+    UI is live, APK builds are working, and transport plus crypto are the next engineering layers.
+  </text>
+
+  <g transform="translate(229 332)">
+    <rect width="172" height="44" rx="22" fill="#11263d" stroke="#2f4d74"/>
+    <circle cx="23" cy="22" r="6" fill="#61c3ff"/>
+    <text x="40" y="29" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#eff6ff">overlay UI path</text>
+
+    <rect x="188" width="168" height="44" rx="22" fill="#102d31" stroke="#2b7468"/>
+    <circle cx="211" cy="22" r="6" fill="#5eead4"/>
+    <text x="228" y="29" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#ecfdf5">vpn core next</text>
+  </g>
+
+  <g transform="translate(910 88)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="42" y="38" width="150" height="272" rx="28" fill="#0f2238" stroke="#61c3ff" stroke-width="4"/>
+    <rect x="58" y="72" width="118" height="176" rx="18" fill="#11293f" stroke="#284f76" stroke-width="2"/>
+    <circle cx="117" cy="270" r="12" fill="#17314d" stroke="#5b8ec5" stroke-width="2"/>
+
+    <circle cx="300" cy="78" r="20" fill="#10263b" stroke="#5eead4" stroke-width="4"/>
+    <circle cx="430" cy="140" r="20" fill="#10263b" stroke="#61c3ff" stroke-width="4"/>
+    <circle cx="302" cy="248" r="22" fill="#13273e" stroke="#f8fbff" stroke-width="4"/>
+
+    <path d="M192 138L280 88" stroke="url(#blue)" stroke-width="5"/>
+    <path d="M318 90L411 130" stroke="url(#green)" stroke-width="5"/>
+    <path d="M412 158L320 234" stroke="#8ea8c6" stroke-width="4"/>
+    <path d="M191 170L280 238" stroke="#8ea8c6" stroke-width="4"/>
+
+    <circle cx="302" cy="248" r="42" stroke="#61c3ff" stroke-width="2" opacity="0.22"/>
+    <circle cx="302" cy="248" r="68" stroke="#5eead4" stroke-width="2" opacity="0.1"/>
+
+    <text x="83" y="101" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#f8fbff">Android</text>
+    <text x="291" y="84" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#f8fbff">X1</text>
+    <text x="420" y="146" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#f8fbff">X2</text>
+    <text x="268" y="254" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#f8fbff">IPSEC</text>
+  </g>
+</svg>
