@@ -18,6 +18,7 @@ This is a real Android prototype branch, not a finished mobile client.
 - APK build is working
 - Android UI/state-model base is working
 - route selection and session-flow visualization are already present
+- Rust `native-core` has been started for the first real crypto/session layer
 - live transport, live crypto and live VPN/IPsec integration are not wired yet
 
 See also: [STATUS.md](STATUS.md)
@@ -40,19 +41,21 @@ See also: [STATUS.md](STATUS.md)
 - Jetpack Compose client shell for the Android track
 - overlay route semantics aligned with the lab model
 - session log and research-flow visualization
+- dedicated Rust crate for future Android crypto/core growth
 - standalone APK build path for public repository use
 
 ## Current limitations
 
 - overlay/session logic is still mocked at the client layer
+- Rust core is not yet bound into Kotlin over JNI/FFI
 - Android `VpnService`, real transport and real crypto are not wired yet
 
 ## Planned next layers
 
 1. move session state into a background service
 2. add config import and export
-3. add real overlay transport
-4. add crypto/session engine
+3. bind Rust `native-core` into the Android app
+4. add real overlay transport
 5. connect to Android `VpnService`
 
 ## Build
@@ -70,3 +73,9 @@ Useful variants:
 - `.\build-android-apk.ps1 -VerboseLog`
 
 On success the script prints the generated APK path from `app/build/outputs/apk/...`.
+
+## Native core
+
+- `native-core/` contains the first Rust crypto/core layer for Android.
+- Current scope: session bootstrap model, X25519 shared secret derivation and HKDF-SHA256 key schedule.
+- Current limitation: no JNI bridge is wired into the app yet.

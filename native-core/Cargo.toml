@@ -1,0 +1,17 @@
+[package]
+name = "adaptive-ipsec-overlay-android-native-core"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Rust crypto/core prototype for the Adaptive Secure Overlay Android IPsec track"
+
+[lib]
+crate-type = ["rlib", "staticlib"]
+
+[dependencies]
+hkdf = "0.12"
+serde = { version = "1", features = ["derive"] }
+sha2 = "0.10"
+x25519-dalek = { version = "2", features = ["static_secrets"] }
+zeroize = "1"
+

@@ -33,3 +33,9 @@ data class RouteSelection(
     val x1: OverlayNode,
     val x2: OverlayNode,
 )
+
+data class CryptoBackendStatus(
+    val backendName: String,
+    val stateLabel: String,
+    val details: String,
+)

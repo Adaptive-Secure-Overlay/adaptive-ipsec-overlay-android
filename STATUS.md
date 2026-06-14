@@ -10,7 +10,7 @@ This repository is the current Android client prototype for the Adaptive Secure 
 | Android UI | done | Jetpack Compose shell, route selection and session log are present. |
 | Overlay session model | partial | Session flow is modeled in the client, but still mocked. |
 | Control-plane transport | not yet | No live network transport is wired on Android yet. |
-| Crypto/core | not yet | Real X25519, HKDF and signed exchange are not yet running on-device. |
+| Crypto/core | partial | Rust `native-core` has started with X25519 and HKDF-SHA256 session derivation, but it is not yet bound into the Android app. |
 | Data-plane integration | not yet | `VpnService`, IKE/IPsec or equivalent Android data-plane integration is still pending. |
 | Release packaging | partial | APK exists for prototype use; no production delivery path yet. |
 
@@ -24,6 +24,6 @@ This repository is the current Android client prototype for the Adaptive Secure 
 ## What comes next
 
 1. move session logic into a background service;
-2. begin real crypto/core wiring;
+2. bind the Rust `native-core` into the Android app;
 3. add transport between peers/services;
 4. connect the branch to Android VPN integration.

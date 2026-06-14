@@ -47,10 +47,20 @@ class OverlayViewModel : ViewModel() {
     var lastRoute by mutableStateOf<RouteSelection?>(null)
         private set
 
+    var cryptoBackend by mutableStateOf(
+        CryptoBackendStatus(
+            backendName = "Rust native-core",
+            stateLabel = "Started",
+            details = "X25519 + HKDF session core moved into a dedicated Rust crate. Android app is not bound to JNI yet, but the crypto/core track is now real.",
+        ),
+    )
+        private set
+
     var logs by mutableStateOf(
         listOf(
             SessionLogEntry("Android client UI prototype ready."),
             SessionLogEntry("Mode: custom overlay control-plane + direct ESP data-plane."),
+            SessionLogEntry("Rust native-core started for Android crypto/session layer."),
         ),
     )
         private set
@@ -110,6 +120,7 @@ class OverlayViewModel : ViewModel() {
         append("X1 sees A/X2, X2 sees B but not initiator locator.", accent = true)
         phase = SessionPhase.SA
         append("Derive ESP key material from X25519/HKDF context.")
+        append("Android native-core target: move derivation into Rust session engine.")
         append("Manual SA install plan prepared.")
         phase = SessionPhase.ACTIVE
         append("ESP active: ${route.initiator.name} <-> ${route.responder.name}", accent = true)

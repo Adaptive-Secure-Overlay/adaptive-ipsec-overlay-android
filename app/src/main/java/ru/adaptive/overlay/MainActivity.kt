@@ -87,10 +87,34 @@ private fun OverlayApp(vm: OverlayViewModel = viewModel()) {
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             RouteSummaryCard(vm)
+            CryptoCoreCard(vm)
             NodeSelectionCard(vm)
             RouteControlCard(vm)
             ControlButtons(vm)
             LogCard(vm)
+        }
+    }
+}
+
+@Composable
+private fun CryptoCoreCard(vm: OverlayViewModel) {
+    OutlinedCard {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp),
+        ) {
+            Text("Crypto core", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                AssistChip(onClick = {}, label = { Text(vm.cryptoBackend.backendName) })
+                AssistChip(onClick = {}, label = { Text(vm.cryptoBackend.stateLabel) })
+            }
+            Text(
+                vm.cryptoBackend.details,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
         }
     }
 }
