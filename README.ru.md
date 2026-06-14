@@ -22,12 +22,13 @@ Android-ветка Adaptive Secure Overlay IPsec — это клиентский
 - подготовлена точка входа для будущего service/VpnService слоя
 - создан отдельный Rust crate под Android crypto/core
 - добавлен первый мост Kotlin -> Rust через JNI
+- подготовлен packaging-путь для будущей `.so` библиотеки через `jniLibs`
 - сборка APK уже позволяет вести отдельный Android-трек публично
 
 ## Что пока не готово
 
 - live control-plane transport
-- упаковка Rust-библиотеки через Android NDK
+- сборка и упаковка `libadaptive_overlay_core.so` под Android ABI
 - реальный X25519/HKDF обмен на Android через этот слой
 - реальная установка IKE/ESP или эквивалентного Android data-plane
 - интеграция с `VpnService` или внешним IPsec backend
@@ -37,6 +38,7 @@ Android-ветка Adaptive Secure Overlay IPsec — это клиентский
 - `native-core/` — это первый Rust слой для Android crypto/core.
 - Сейчас в нем уже есть модель bootstrap-сессии, X25519, HKDF-SHA256 и JNI exports.
 - Kotlin-сторона уже готова к вызову, но упаковка native library в APK пока еще не завершена.
+- `build-native-core.ps1` уже подготавливает packaging-слой и станет точкой сборки `.so` на следующем этапе.
 
 ## Сборка
 

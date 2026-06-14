@@ -58,6 +58,12 @@ $env:ANDROID_HOME = $androidSdk
 $env:ANDROID_SDK_ROOT = $androidSdk
 $env:Path = "$androidStudioJbr\bin;$env:Path"
 
+$nativePrepScript = Join-Path $projectRoot "build-native-core.ps1"
+if (Test-Path $nativePrepScript) {
+    Write-Host "Preparing Rust native-core packaging..."
+    & $nativePrepScript -SkipIfUnavailable
+}
+
 $task = if ($Release) { "assembleRelease" } else { "assembleDebug" }
 $apkVariant = if ($Release) { "release" } else { "debug" }
 $gradleArgs = @($task, "--stacktrace")

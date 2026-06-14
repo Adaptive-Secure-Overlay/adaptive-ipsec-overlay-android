@@ -44,6 +44,7 @@ See also: [STATUS.md](STATUS.md)
 - session log and research-flow visualization
 - dedicated Rust crate for future Android crypto/core growth
 - first Kotlin-to-Rust JNI bridge contract added
+- Android packaging path prepared for future `.so` delivery through `jniLibs`
 - standalone APK build path for public repository use
 
 ## Current limitations
@@ -56,7 +57,7 @@ See also: [STATUS.md](STATUS.md)
 
 1. move session state into a background service
 2. add config import and export
-3. package the Rust library through Android NDK tooling
+3. produce and package `libadaptive_overlay_core.so` for Android ABIs
 4. add real overlay transport
 5. connect to Android `VpnService`
 
@@ -81,3 +82,4 @@ On success the script prints the generated APK path from `app/build/outputs/apk/
 - `native-core/` contains the first Rust crypto/core layer for Android.
 - Current scope: session bootstrap model, X25519 shared secret derivation, HKDF-SHA256 key schedule and first JNI exports.
 - Current limitation: the JNI contract exists, but native Android packaging is not finished yet.
+- `build-native-core.ps1` prepares the packaging layer and can later become the one-button native build step.
