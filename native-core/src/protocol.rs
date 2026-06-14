@@ -98,8 +98,10 @@ mod tests {
     fn both_sides_derive_the_same_material() {
         let initiator_secret = [7u8; 32];
         let responder_secret = [9u8; 32];
-        let initiator_public = PublicKey::from(StaticSecret::from(initiator_secret)).to_bytes();
-        let responder_public = PublicKey::from(StaticSecret::from(responder_secret)).to_bytes();
+        let initiator_secret_obj = StaticSecret::from(initiator_secret);
+        let responder_secret_obj = StaticSecret::from(responder_secret);
+        let initiator_public = PublicKey::from(&initiator_secret_obj).to_bytes();
+        let responder_public = PublicKey::from(&responder_secret_obj).to_bytes();
 
         let bootstrap = OverlaySessionBootstrap {
             session_id: [1u8; 32],
@@ -124,4 +126,3 @@ mod tests {
         assert_ne!(left.esp_a_to_b, left.esp_b_to_a);
     }
 }
-

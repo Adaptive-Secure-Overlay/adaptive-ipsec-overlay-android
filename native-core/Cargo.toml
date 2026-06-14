@@ -6,6 +6,7 @@ license = "MIT"
 description = "Rust crypto/core prototype for the Adaptive Secure Overlay Android IPsec track"
 
 [lib]
+name = "adaptive_overlay_core"
 crate-type = ["rlib", "staticlib", "cdylib"]
 
 [dependencies]

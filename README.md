@@ -20,6 +20,7 @@ This is a real Android prototype branch, not a finished mobile client.
 - route selection and session-flow visualization are already present
 - Rust `native-core` has been started for the first real crypto/session layer
 - Kotlin and Rust now have a scaffolded JNI bridge contract
+- Rust `.so` libraries are now built and packaged into the APK for `arm64-v8a`, `armeabi-v7a` and `x86_64`
 - live transport, live crypto and live VPN/IPsec integration are not wired yet
 
 See also: [STATUS.md](STATUS.md)
@@ -45,19 +46,20 @@ See also: [STATUS.md](STATUS.md)
 - dedicated Rust crate for future Android crypto/core growth
 - first Kotlin-to-Rust JNI bridge contract added
 - Android packaging path prepared for future `.so` delivery through `jniLibs`
+- real Android `.so` packaging now works through the project build flow
 - standalone APK build path for public repository use
 
 ## Current limitations
 
 - overlay/session logic is still mocked at the client layer
-- JNI bridge exists, but Android NDK packaging is not finished yet
+- JNI bridge exists and the Rust library is already packaged into the APK, but on-device functional proof is still the next step
 - Android `VpnService`, real transport and real crypto are not wired yet
 
 ## Planned next layers
 
 1. move session state into a background service
 2. add config import and export
-3. produce and package `libadaptive_overlay_core.so` for Android ABIs
+3. validate live native loading and self-test on device/emulator
 4. add real overlay transport
 5. connect to Android `VpnService`
 
@@ -81,5 +83,5 @@ On success the script prints the generated APK path from `app/build/outputs/apk/
 
 - `native-core/` contains the first Rust crypto/core layer for Android.
 - Current scope: session bootstrap model, X25519 shared secret derivation, HKDF-SHA256 key schedule and first JNI exports.
-- Current limitation: the JNI contract exists, but native Android packaging is not finished yet.
+- Current milestone: `libadaptive_overlay_core.so` is now built for `arm64-v8a`, `armeabi-v7a` and `x86_64` and packaged through `jniLibs`.
 - `build-native-core.ps1` prepares the packaging layer and can later become the one-button native build step.

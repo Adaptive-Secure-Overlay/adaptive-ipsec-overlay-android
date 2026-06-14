@@ -8,6 +8,13 @@ $projectRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 $nativeCoreRoot = Join-Path $projectRoot "native-core"
 $jniLibsRoot = Join-Path $projectRoot "app\src\main\jniLibs"
 $prebuiltRoot = Join-Path $nativeCoreRoot "prebuilt-libs"
+$sdkRoot = "C:\Users\vlado\AppData\Local\Android\Sdk"
+$ndkRootBase = Join-Path $sdkRoot "ndk"
+$cargoBin = Join-Path $env:USERPROFILE ".cargo\bin"
+
+if (Test-Path $cargoBin) {
+    $env:Path = "$cargoBin;$env:Path"
+}
 
 function Ensure-Dir([string]$Path) {
     New-Item -ItemType Directory -Force -Path $Path | Out-Null
@@ -26,6 +33,8 @@ Ensure-Dir $jniLibsRoot
 
 $cargoCmd = Get-Command cargo -ErrorAction SilentlyContinue
 $rustupCmd = Get-Command rustup -ErrorAction SilentlyContinue
+$cargoExe = Get-Command cargo -ErrorAction SilentlyContinue
+$cargoNdkCmd = Get-Command cargo-ndk -ErrorAction SilentlyContinue
 
 if (-not $cargoCmd -or -not $rustupCmd) {
     Write-Host "Rust toolchain not found in PATH."
@@ -53,22 +62,61 @@ if (-not $cargoCmd -or -not $rustupCmd) {
     return
 }
 
-$targets = @(
-    @{ Abi = "arm64-v8a"; Triple = "aarch64-linux-android" },
-    @{ Abi = "armeabi-v7a"; Triple = "armv7-linux-androideabi" },
-    @{ Abi = "x86_64"; Triple = "x86_64-linux-android" }
-)
-
-Write-Host "Rust toolchain detected. Native Android build path is ready for target compilation."
-Write-Host "This script currently expects the proper Android Rust targets and linker setup to be installed."
-Write-Host "If they are already present, the next step is to extend this script with cargo target builds per ABI."
-
-foreach ($target in $targets) {
-    $dest = Join-Path $jniLibsRoot $target.Abi
-    Ensure-Dir $dest
+if (-not (Test-Path $ndkRootBase)) {
+    $message = "Android NDK directory not found: $ndkRootBase"
+    if ($SkipIfUnavailable) {
+        Write-Host $message
+        return
+    }
+    throw $message
 }
 
-Write-Host "JNI packaging directories prepared:"
-foreach ($target in $targets) {
-    Write-Host " - $($target.Abi)"
+$ndkDir = Get-ChildItem $ndkRootBase -Directory | Sort-Object Name -Descending | Select-Object -First 1
+if (-not $ndkDir) {
+    $message = "No installed Android NDK version found under $ndkRootBase"
+    if ($SkipIfUnavailable) {
+        Write-Host $message
+        return
+    }
+    throw $message
+}
+
+if (-not $cargoExe -or -not $cargoNdkCmd) {
+    $message = "cargo and/or cargo-ndk are not installed or not in PATH."
+    if ($SkipIfUnavailable) {
+        Write-Host $message
+        return
+    }
+    throw $message
+}
+
+$env:ANDROID_NDK_HOME = $ndkDir.FullName
+$env:ANDROID_NDK_ROOT = $ndkDir.FullName
+$env:ANDROID_SDK_ROOT = $sdkRoot
+
+foreach ($abi in @("arm64-v8a", "armeabi-v7a", "x86_64")) {
+    Ensure-Dir (Join-Path $jniLibsRoot $abi)
+}
+
+Write-Host "Building Rust native-core with cargo-ndk..."
+Write-Host "NDK: $($ndkDir.FullName)"
+
+Push-Location $nativeCoreRoot
+try {
+    & $cargoExe.Source ndk `
+        -t arm64-v8a `
+        -t armeabi-v7a `
+        -t x86_64 `
+        -o $jniLibsRoot `
+        build --release
+    if ($LASTEXITCODE -ne 0) {
+        throw "cargo-ndk build failed with exit code $LASTEXITCODE"
+    }
+} finally {
+    Pop-Location
+}
+
+Write-Host "Rust Android libraries packaged into jniLibs:"
+Get-ChildItem $jniLibsRoot -Recurse -Filter "libadaptive_overlay_core.*" -ErrorAction SilentlyContinue | ForEach-Object {
+    Write-Host " - $($_.FullName)"
 }

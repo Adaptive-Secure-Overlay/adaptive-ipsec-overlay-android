@@ -9,4 +9,5 @@ local.properties
 *.iml
 .idea/
 captures/
-
+native-core/target/
+app/src/main/jniLibs/*/*.so

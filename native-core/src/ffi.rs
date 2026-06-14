@@ -6,7 +6,7 @@ use x25519_dalek::{PublicKey, StaticSecret};
 
 #[unsafe(no_mangle)]
 pub extern "system" fn Java_ru_adaptive_overlay_NativeCryptoBridge_nativeVersion(
-    mut env: JNIEnv,
+    env: JNIEnv,
     _class: JClass,
 ) -> jstring {
     match env.new_string("adaptive-native-core/0.1.0-jni") {
@@ -30,8 +30,10 @@ pub extern "system" fn Java_ru_adaptive_overlay_NativeCryptoBridge_nativeSelfTes
 fn self_test() -> bool {
     let initiator_secret = [7u8; 32];
     let responder_secret = [9u8; 32];
-    let initiator_public = PublicKey::from(StaticSecret::from(initiator_secret)).to_bytes();
-    let responder_public = PublicKey::from(StaticSecret::from(responder_secret)).to_bytes();
+    let initiator_secret_obj = StaticSecret::from(initiator_secret);
+    let responder_secret_obj = StaticSecret::from(responder_secret);
+    let initiator_public = PublicKey::from(&initiator_secret_obj).to_bytes();
+    let responder_public = PublicKey::from(&responder_secret_obj).to_bytes();
 
     let bootstrap = OverlaySessionBootstrap {
         session_id: [1u8; 32],
