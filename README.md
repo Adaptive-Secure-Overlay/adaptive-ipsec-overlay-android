@@ -1,8 +1,8 @@
-# Adaptive Secure Overlay Android
+# Adaptive Secure Overlay IPsec Android
 
-Android client prototype for the Adaptive Secure Overlay research track.
+Android client prototype for the Adaptive Secure Overlay IPsec research track.
 
-This repository is the Android-facing stub of the project: it already mirrors the lab routing semantics and session flow, but it does not yet install a live VPN or IPsec data plane on Android.
+This repository is the Android-facing IPsec stub of the project: it already mirrors the lab routing semantics and session flow, but it does not yet install a live VPN or IPsec data plane on Android.
 
 ## Current scope
 
