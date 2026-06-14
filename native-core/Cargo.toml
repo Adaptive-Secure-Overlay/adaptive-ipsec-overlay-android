@@ -6,12 +6,12 @@ license = "MIT"
 description = "Rust crypto/core prototype for the Adaptive Secure Overlay Android IPsec track"
 
 [lib]
-crate-type = ["rlib", "staticlib"]
+crate-type = ["rlib", "staticlib", "cdylib"]
 
 [dependencies]
 hkdf = "0.12"
+jni = "0.21"
 serde = { version = "1", features = ["derive"] }
 sha2 = "0.10"
 x25519-dalek = { version = "2", features = ["static_secrets"] }
 zeroize = "1"
-

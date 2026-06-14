@@ -1,3 +1,4 @@
+mod ffi;
 mod protocol;
 
 pub use protocol::{
@@ -6,4 +7,3 @@ pub use protocol::{
     SessionParticipant,
     derive_session_material,
 };
-

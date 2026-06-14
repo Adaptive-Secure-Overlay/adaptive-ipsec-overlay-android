@@ -48,11 +48,7 @@ class OverlayViewModel : ViewModel() {
         private set
 
     var cryptoBackend by mutableStateOf(
-        CryptoBackendStatus(
-            backendName = "Rust native-core",
-            stateLabel = "Started",
-            details = "X25519 + HKDF session core moved into a dedicated Rust crate. Android app is not bound to JNI yet, but the crypto/core track is now real.",
-        ),
+        NativeCryptoBridge.backendStatus(),
     )
         private set
 
@@ -61,6 +57,7 @@ class OverlayViewModel : ViewModel() {
             SessionLogEntry("Android client UI prototype ready."),
             SessionLogEntry("Mode: custom overlay control-plane + direct ESP data-plane."),
             SessionLogEntry("Rust native-core started for Android crypto/session layer."),
+            SessionLogEntry("JNI bridge scaffolded between Kotlin and Rust."),
         ),
     )
         private set
