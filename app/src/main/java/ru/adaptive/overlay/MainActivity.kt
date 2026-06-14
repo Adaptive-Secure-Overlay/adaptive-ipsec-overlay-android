@@ -1,6 +1,7 @@
 package ru.adaptive.overlay
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -50,6 +51,11 @@ import ru.adaptive.overlay.ui.theme.AdaptiveSecureOverlayTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val nativeStatus = NativeCryptoBridge.backendStatus()
+        Log.i(
+            "AdaptiveSecureOverlay",
+            "native_backend=${nativeStatus.backendName}; state=${nativeStatus.stateLabel}; details=${nativeStatus.details}",
+        )
         enableEdgeToEdge()
         setContent {
             AdaptiveSecureOverlayTheme {

@@ -1,0 +1,10 @@
+Android Emulator live proof
+Date: 2026-06-14
+AVD: ASO_X86_64_API35
+ABI: x86_64
+APK: app/build/outputs/apk/debug/app-debug.apk
+
+Observed logcat lines:
+
+06-14 18:32:45.684  2941  2941 I AdaptiveSecureOverlay: native_backend=Rust native-core; state=JNI live; details=JNI bridge is live and Rust self-test passed. Version: adaptive-native-core/0.1.0-jni.
+06-14 18:32:45.924  2941  2941 I AdaptiveSecureOverlay: native_backend=Rust native-core; state=JNI live; details=JNI bridge is live and Rust self-test passed. Version: adaptive-native-core/0.1.0-jni.

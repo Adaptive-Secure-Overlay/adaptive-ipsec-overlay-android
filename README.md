@@ -19,9 +19,10 @@ This is a real Android prototype branch, not a finished mobile client.
 - Android UI/state-model base is working
 - route selection and session-flow visualization are already present
 - Rust `native-core` has been started for the first real crypto/session layer
-- Kotlin and Rust now have a scaffolded JNI bridge contract
+- Kotlin and Rust now have a live JNI bridge
 - Rust `.so` libraries are now built and packaged into the APK for `arm64-v8a`, `armeabi-v7a` and `x86_64`
-- live transport, live crypto and live VPN/IPsec integration are not wired yet
+- Android Emulator proof confirms the Rust self-test runs from the packaged APK
+- live transport and live VPN/IPsec integration are not wired yet
 
 See also: [STATUS.md](STATUS.md)
 
@@ -44,7 +45,7 @@ See also: [STATUS.md](STATUS.md)
 - overlay route semantics aligned with the lab model
 - session log and research-flow visualization
 - dedicated Rust crate for future Android crypto/core growth
-- first Kotlin-to-Rust JNI bridge contract added
+- Kotlin-to-Rust JNI bridge implemented and verified in Android Emulator
 - Android packaging path prepared for future `.so` delivery through `jniLibs`
 - real Android `.so` packaging now works through the project build flow
 - standalone APK build path for public repository use
@@ -52,14 +53,13 @@ See also: [STATUS.md](STATUS.md)
 ## Current limitations
 
 - overlay/session logic is still mocked at the client layer
-- JNI bridge exists and the Rust library is already packaged into the APK, but on-device functional proof is still the next step
-- Android `VpnService`, real transport and real crypto are not wired yet
+- Android `VpnService`, real transport and live peer exchange are not wired yet
 
 ## Planned next layers
 
 1. move session state into a background service
 2. add config import and export
-3. validate live native loading and self-test on device/emulator
+3. move from JNI self-test to real Android-side session bootstrap calls
 4. add real overlay transport
 5. connect to Android `VpnService`
 
@@ -84,4 +84,5 @@ On success the script prints the generated APK path from `app/build/outputs/apk/
 - `native-core/` contains the first Rust crypto/core layer for Android.
 - Current scope: session bootstrap model, X25519 shared secret derivation, HKDF-SHA256 key schedule and first JNI exports.
 - Current milestone: `libadaptive_overlay_core.so` is now built for `arm64-v8a`, `armeabi-v7a` and `x86_64` and packaged through `jniLibs`.
+- Live proof milestone: the packaged APK was installed into an `x86_64` Android Emulator on `2026-06-14`, and `NativeCryptoBridge` reported `JNI live` with a passing Rust self-test.
 - `build-native-core.ps1` prepares the packaging layer and can later become the one-button native build step.
