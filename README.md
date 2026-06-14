@@ -4,7 +4,16 @@ Android client prototype for the Adaptive Secure Overlay IPsec research track.
 
 Canonical repository name: `adaptive-ipsec-overlay-android`
 
-This repository is the Android-facing IPsec stub of the project: it already mirrors the lab routing semantics and session flow, but it does not yet install a live VPN or IPsec data plane on Android.
+This repository is the Android-facing branch of the project: it already mirrors the lab routing semantics and session flow, but it does not yet install a live VPN or IPsec data plane on Android.
+
+## Current stage
+
+This is a real Android prototype branch, not a finished mobile client.
+
+- APK build is working
+- Android UI/state-model base is working
+- route selection and session-flow visualization are already present
+- live transport, live crypto and live VPN/IPsec integration are not wired yet
 
 ## Current scope
 
@@ -19,12 +28,17 @@ This repository is the Android-facing IPsec stub of the project: it already mirr
   - ESP material preparation
   - direct ESP activation target
 
-## Current status
+## Achieved so far
 
-- APK build is working
-- Android UI/state-model base is working
-- overlay/session logic is currently mocked at the client layer
-- Android `VpnService` / real transport / real crypto are not wired yet
+- Jetpack Compose client shell for the Android track
+- overlay route semantics aligned with the lab model
+- session log and research-flow visualization
+- standalone APK build path for public repository use
+
+## Current limitations
+
+- overlay/session logic is still mocked at the client layer
+- Android `VpnService`, real transport and real crypto are not wired yet
 
 ## Planned next layers
 
